@@ -10,100 +10,24 @@ body {
   height: 100vh;
 }
 
-main#main {
-  background: #222;
-  width: 540px;
+canvas#main {
+  width: 640px;
   height: 360px;
   border: 1px solid #fff;
   overflow: hidden;
 }
 
-div#player {
-  background: #00f;
-  width: 40px;
-  height: 40px;
-  overflow: hidden;
-  position: relative;
-  transform: translate(40px, 40px);
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 720px;
+  margin: auto;
+  padding: 1em;
+  align-items: center;
 }
 
-#player span.line {
-  background: #0ff;
-  width: 100%;
-  height: 2px;
-  position: absolute;
+h3 {
+  background: lightblue;
+  margin-bottom: .5em;
+  padding: .5em 5em;
 }
-
-#player span.line.top {
-  background: linear-gradient(to right, transparent, #0ff);
-  left: 0;
-  top: 0;
-  animation: top-line 1.4s forwards infinite;
-}
-
-#player span.line.bottom {
-  background: linear-gradient(to left, transparent, #0ff);
-  right: 0;
-  bottom: 0;
-  animation: bottom-line 1.4s forwards infinite;
-}
-
-#player span.line.left,
-#player span.line.right {
-  width: 2px;
-  height: 100%;
-}
-
-#player span.line.left {
-  background: linear-gradient(to top, transparent, #0ff);
-  left: 0;
-  bottom: 0;
-  animation: left-line 1.4s forwards infinite;
-  animation-delay: .7s;
-}
-
-#player span.line.right {
-  background: linear-gradient(to bottom, transparent, #0ff);
-  top: 0;
-  right: 0;
-  animation: right-line 1.4s forwards infinite;
-  animation-delay: .7s;
-}
-
-
-@keyframes top-line {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes bottom-line {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes left-line {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
-}
-
-@keyframes right-line {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-}
-

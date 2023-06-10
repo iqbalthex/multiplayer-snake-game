@@ -1,7 +1,7 @@
 const WORLD = {
   peak: { x: 640, y: 360 },
 };
-const SPEED = 5;
+const SPEED = 4;
 const DIRECTION = { x: 1, y: 0 };
 
 const score = document.getElementById("score");
@@ -15,7 +15,7 @@ const star = new Star();
 window.addEventListener("keydown", event => {
   // do nothing if key pressed isn't arrow
   if (event.keyCode < 37 || event.keyCode > 40) return;
-
+// loop = undefined;
   ({
     "ArrowUp"   : () => (player._dir.x =  0, player._dir.y = -1),
     "ArrowDown" : () => (player._dir.x =  0, player._dir.y =  1),

@@ -2,10 +2,28 @@ class Player {
   _width = 40;
   _height = 40;
   _color = "#0000cc";
+  _tailColor = "#00ffff";
   _pos = { x: 0, y: 0 };
   _dir = { x: 1, y: 0 };
+  _tail = [
+    { x: 0, y: 0 },
+    { x: 1, y: 0 },
+    { x: 2, y: 0 },
+  ];
+  n = 0;
 
   spawn() {
+    this._tail.forEach((tail, idx) => {
+      ctx.fillStyle = this._tailColor;
+
+      ctx.fillRect(
+        tail.x - (idx * this._width  * this._dir.x),
+        tail.y - (idx * this._height * this._dir.y),
+        this._width,
+        this._height
+      );
+    });
+
     ctx.fillStyle = this._color;
     ctx.fillRect(this._pos.x, this._pos.y, this._width, this._height);
   }
@@ -16,6 +34,9 @@ class Player {
 
     const prev = this.move();
     this.clearPrevious(prev);
+
+    this._tail.unshift({ ...this._pos });
+    this._tail.pop();
 
     this.spawn();
   }

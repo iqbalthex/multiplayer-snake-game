@@ -1,4 +1,4 @@
-class Star {
+class Star extends GameObject {
   _width = 30;
   _height = 30;
   _color = "#cccc00";
@@ -18,20 +18,12 @@ class Star {
   }
 
   update() {
-    
-
     this.spawn();
   }
 
-  get side() {
-    return {
-      left  : this._pos.x,
-      top   : this._pos.y,
-      right : this._pos.x + this._width,
-      bottom: this._pos.y + this._height
-    };
-  }
-
+  /**
+   * Spawn with random position on map.
+   */
   respawn() {
     this._pos = {
       x: Math.floor(Math.random() * main.width  / 40) * 40,

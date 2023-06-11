@@ -11,17 +11,30 @@ const ctx = main.getContext("2d");
 const player = new Player();
 const star = new Star();
 
+const navigation = {
+  "ArrowUp"   : () => (player._dir.x =  0, player._dir.y = -1),
+  "ArrowDown" : () => (player._dir.x =  0, player._dir.y =  1),
+  "ArrowLeft" : () => (player._dir.x = -1, player._dir.y =  0),
+  "ArrowRight": () => (player._dir.x =  1, player._dir.y =  0),
+};
 
-window.addEventListener("keydown", event => {
-  // do nothing if key pressed isn't arrow
-  if (event.keyCode < 37 || event.keyCode > 40) return;
-// loop = undefined;
-  ({
-    "ArrowUp"   : () => (player._dir.x =  0, player._dir.y = -1),
-    "ArrowDown" : () => (player._dir.x =  0, player._dir.y =  1),
-    "ArrowLeft" : () => (player._dir.x = -1, player._dir.y =  0),
-    "ArrowRight": () => (player._dir.x =  1, player._dir.y =  0),
-  })[event.key]();
+
+window.addEventListener("keydown", ({ key, keyCode }) => {
+  // loop = undefined;
+
+  // Do nothing if key pressed isn't arrow.
+  if (keyCode < 37 || keyCode > 40) return;
+
+  // Prevent player to move opposite directly.
+  const { x, y } = player._dir;
+  if (
+    (x ===  1 && keyCode === 37) ||
+    (x === -1 && keyCode === 39) ||
+    (y ===  1 && keyCode === 38) ||
+    (y === -1 && keyCode === 40)
+  ) return;
+
+  navigation[key]();
 });
 
 loop();
